@@ -1,0 +1,12 @@
+file_contents = {
+    "/etc/passwd": "root:x:0:0:root:/root:/sbin/nologin\nbin:x:1:1:bin:/bin:/sbin/nologin\ndaemon:x:2:2:daemon:/sbin:/sbin/nologin\nadm:x:3:4:adm:/var/adm:/sbin/nologin\nlp:x:4:7:lp:/var/spool/lpd:/sbin/nologin\nmail:x:8:12:mail:/var/spool/mail:/sbin/nologin\noperator:x:11:0:operator:/root:/sbin/nologin\nnobody:x:99:99:Nobody:/:/sbin/nologin\ntmshnobody:x:32765:32765:tmshnobody:/:/sbin/nologin\nadmin:x:0:500:Admin User:/home/admin:/usr/bin/tmsh\nsupport:x:0:0:support:/root:/bin/bash\nf5emsvr:x:975:975:F5 EM Service Account:/root:/bin/false\nvcsa:x:69:69:virtual console memory owner:/dev:/sbin/nologin\ndbus:x:81:81:System message bus:/:/sbin/nologin\nsystemd-bus-proxy:x:974:998:systemd Bus Proxy:/:/sbin/nologin\nsystemd-network:x:192:192:systemd Network Management:/:/sbin/nologin\npolkitd:x:27:27:User for polkitd:/:/sbin/nologin\nnslcd:x:65:55:LDAP Client User:/:/sbin/nologin\ntss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin\npostgres:x:26:26:PostgreSQL Server:/var/local/pgsql/data:/sbin/nologin\ntomcat:x:91:91:Apache Tomcat:/usr/share/tomcat:/sbin/nologin\nhsqldb:x:96:96::/var/lib/hsqldb:/sbin/nologin\nsshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin\nrpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin\nntp:x:38:38::/etc/ntp:/sbin/nologin\nf5_remoteuser:x:499:499:f5 remote user account:/home/f5_remoteuser:/sbin/nologin\ntcpdump:x:72:72::/:/sbin/nologin\noprofile:x:16:16:Special user account to be used by OProfile:/:/sbin/nologin\nsdm:x:191:996:sdmuser:/var/sdm:/bin/false\nnamed:x:25:25:Named:/var/named:/bin/false\napache:x:48:48:Apache:/usr/local/www:/sbin/nologin\nsyscheck:x:199:10::/:/sbin/nologin\nmysql:x:98:98:MySQL server:/var/lib/mysql:/sbin/nologin\nrestnoded:x:198:198::/:/sbin/nologin\n",
+    "/etc/f5-release": "BIG-IP release 15.1.0.2 (Final)\n"
+}
+
+# These are mainly for automated and metasploit attacks. Its not going to fool manual interaction
+command_contents = {
+    "create cli alias private list command bash": "",
+    "list ": "",
+    "delete cli alias private list": "",
+    "list auth user admin": "auth user admin {\n    description \"Admin User\"\n    encrypted-password $6$oeE7u1cp$5cOu9tYnEiXYx\/6UuyOTfgJw5nUgXnetzipHdcX7oRc3xwehAFdQGmhzocud3CGH6MYZgqLGb8u6KiITWBsHi\/\n    partition Common\n    partition-access {\n        all-partitions {\n            role admin\n        }\n    }\n    shell none\n}\n"
+}
