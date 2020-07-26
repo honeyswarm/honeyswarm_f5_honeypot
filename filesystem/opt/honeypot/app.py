@@ -70,7 +70,9 @@ async def on_prepare(request, response):
         "http_post": http_post,
         "http_headers": http_headers,
         "http_path": request.path,
-        "port": "443"
+        "port": "443",
+        "honeypot_type": "F5",
+        "service": "HTTP"
     }
 
     # Send the Broker message
