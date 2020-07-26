@@ -60,7 +60,7 @@ async def on_prepare(request, response):
 
     event_message = {
         "hive_id": HIVEID,
-        "src_ip": request.remote,
+        "source_ip": request.remote,
         "http_remote": request.remote,
         "http_host": request.host,
         "http_version": http_version,
@@ -69,7 +69,8 @@ async def on_prepare(request, response):
         "http_query": request.path_qs,
         "http_post": http_post,
         "http_headers": http_headers,
-        "http_path": request.path
+        "http_path": request.path,
+        "port": "443"
     }
 
     # Send the Broker message
@@ -86,12 +87,12 @@ async def on_prepare(request, response):
 
 async def hpfeeds_publish(event_message):
     async with ClientSession(HPFSERVER, HPFPORT, HPFIDENT, HPFSECRET) as client:
-        client.publish('http.sessions', json.dumps(event_message).encode('utf-8'))
+        client.publish('f5.sessions', json.dumps(event_message).encode('utf-8'))
     return True
 
 
 async def login_page(request):
-    page = request.match_info.get('name', "Anonymous")
+    # page = request.match_info.get('name', "Anonymous")
     with open("login.jsp", "r+") as input_file:
         file_data = input_file.read()
         return html_response(file_data)
@@ -163,7 +164,6 @@ async def tmsh_cmd(request):
     # This one is a file read request lets can some common responses and then a default 
     # This can be GET or POST so need to handle both. 
 
-    file_name = ""
     if request.method == "POST":
         try:
             data = await request.post()
@@ -199,4 +199,3 @@ app.router.add_route('*', '/{name:.*}', login_page)
 
 if __name__ == "__main__":
     web.run_app(app, port=8181)
-
